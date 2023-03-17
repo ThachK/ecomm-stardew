@@ -1,5 +1,6 @@
 package com.stardew.shop.service;
 
+import com.stardew.shop.exception.LoginException;
 import com.stardew.shop.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ public class AuthService {
         this.userService = userService;
     }
 
-    public Optional<User> findByCredentials(String email, String password) {
-        return userService.findByCredentials(email, password);
-    }
-
-    public User register(User user) {
-        return userService.save(user);
+    public User findByCredentials(String email, String password) throws LoginException {
+        Optional<User> user = userService.findByCredentials(email, password);
+        if (!user.isPresent()){
+            throw new LoginException("User not found.");
+        }
+        return user.get();
     }
 }

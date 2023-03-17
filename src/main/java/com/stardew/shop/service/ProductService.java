@@ -1,7 +1,6 @@
 package com.stardew.shop.service;
 
 import com.stardew.shop.model.Product;
-import com.stardew.shop.model.User;
 import com.stardew.shop.repositories.ProductRepository;
 import com.stardew.shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
     public ProductService(ProductRepository productRepository, UserRepository userRepository) {
@@ -27,9 +26,4 @@ public class ProductService {
     public Optional<Product> findById(int id) {
         return productRepository.findById(id);
     }
-
-    public Optional<User> findUserById(int id) {
-        return userRepository.findById(id);
-    }
-
 }

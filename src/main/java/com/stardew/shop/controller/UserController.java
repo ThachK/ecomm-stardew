@@ -1,5 +1,6 @@
 package com.stardew.shop.controller;
 
+import com.stardew.shop.dtos.RegisterDTO;
 import com.stardew.shop.model.User;
 import com.stardew.shop.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(this.userService.save(user));
+    @PostMapping("/register")
+    public ResponseEntity<User> createUser(@RequestBody RegisterDTO registerDTO) {
+        return ResponseEntity.ok(this.userService.save(registerDTO));
     }
 
     @GetMapping
@@ -35,6 +36,4 @@ public class UserController {
         }
         return ResponseEntity.ok(userOptional.get());
     }
-
-
 }

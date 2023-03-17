@@ -23,9 +23,15 @@ public class Product {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Integer price;
 
     @Column(name = "image")
     private String image;
 
+    public Product(String productName, String description, Integer price, String image) {
+        this.productName = productName;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
 }
